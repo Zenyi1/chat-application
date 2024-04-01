@@ -1,0 +1,55 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  background-color: #1f9eb1;
+  color: #fff;
+  padding: 20px 0;
+}
+
+.navbar-brand {
+  font-size: 24px;
+  background-color: #1f9eb1;
+}
+
+/* I know important is not recommended but its to override the bootstrap. */
+.nav-link{
+  color: #fff !important;
+}
+
+#home {
+    background-image: url("../assets/background.jpg"); 
+    background-size: cover;
+    color: #ffffff;
+    text-align: center;
+    padding: 100px 0;
+}
+
+/* Portfolio section styling */
+#portfolio {
+    background-color: #f4f4f4;
+    padding: 50px 0;
+}
+
+.card {
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Contact section styling */
+#contact {
+    background-color: #333;
+    color: #fff;
+    padding: 30px 0;
+    text-align: center;
+    position: fixed;
+    bottom:0;
+    height: 15vh;
+    width: 100%;
+}
