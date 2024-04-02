@@ -1,25 +1,36 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background-image: url("../assets/desert.jpg"); 
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 header {
-  background-color: #1f9eb1;
-  color: #fff;
   padding: 20px 0;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .navbar-brand {
   font-size: 24px;
-  background-color: #1f9eb1;
+  font-weight: 900;
+  color: #f4f4f4;
 }
 
 /* I know important is not recommended but its to override the bootstrap. */
 .nav-link{
   color: #fff !important;
+  font-weight: 900;
 }
 
+.navbar-toggler-icon {
+  color: #fff; 
+}
+
+
 #home {
-    background-image: url("../assets/background.jpg"); 
     background-size: cover;
     color: #ffffff;
     text-align: center;
@@ -28,8 +39,12 @@ header {
 
 /* Portfolio section styling */
 #portfolio {
-    background-color: #f4f4f4;
     padding: 50px 0;
+}
+
+h2{
+  color: #fff;
+  font-weight: bold;
 }
 
 .card {
@@ -46,10 +61,16 @@ header {
 #contact {
     background-color: #333;
     color: #fff;
-    padding: 30px 0;
+    padding: 5px 0;
     text-align: center;
     position: fixed;
     bottom:0;
-    height: 15vh;
+    height: 4vh;
     width: 100%;
+}
+
+@media (max-width: 768px) {
+    body {
+        background-size: cover;
+    }
 }
