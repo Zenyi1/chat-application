@@ -50,6 +50,7 @@ header {
   font-weight: 900;
 }
 
+
 .navbar-toggler-icon {
   color: #fff; 
 }
@@ -119,6 +120,7 @@ h1 {
   font-weight: 900;
 }
 
+/*Bootstaro styling to make sure that the website is responsive*/
 @media (max-width: 768px) {
     body {
         background-size: cover;

@@ -3,14 +3,16 @@
 const socket = io();
 
 const inboxPeople = document.querySelector(".inbox__people");
-const typingNotification = document.querySelector(".typing_notification")
+const typingNotification = document.querySelector(".typing_notification");
+const joinLeave = document.querySelector(".joinleave");
 
 
 let userName = "";
 let id;
-const newUserConnected = function (data) {
-    
 
+
+
+const newUserConnected = function (data) {
     //give the user a random unique id
     id = Math.floor(Math.random() * 1000000);
     userName = 'user-' +id;
@@ -21,6 +23,12 @@ const newUserConnected = function (data) {
     socket.emit("new user", userName);
     //call
     addToUsersBox(userName);
+
+    joinLeave.innerHTML = `${userName} has joined`;
+    //I add this to make it dissapear after 3 seconds
+    setTimeout(() => {
+      joinLeave.innerHTML = "";
+    }, 3000);
 };
 
 const addToUsersBox = function (userName) {
@@ -56,6 +64,11 @@ socket.on("new user", function (data) {
 //when a user leaves
 socket.on("user disconnected", function (userName) {
   document.querySelector(`.${userName}-userlist`).remove();
+
+  joinLeave.innerHTML = `${userName} has left`;
+  setTimeout(() => {
+    joinLeave.innerHTML = "";
+  }, 3000);
 });
 
 
@@ -118,16 +131,16 @@ inputField.addEventListener("input", () => {
   }
 });
 
-
 socket.on("chat message", function (data) {
   addNewMessage({ user: data.nick, message: data.message });
 });
+
 
 socket.on("typing", function (typingUsers) {
   // Display typing notification
   if (typingUsers.length > 0) {
     const typingUsernames = typingUsers.join(", ");
-    
+    //displays the username f someone is typing and theres an inline if statement to check if more than 1 user is typing and switch to are typing
     typingNotification.innerHTML = `${typingUsernames} ${typingUsers.length > 1 ? 'are typing...' : 'is typing...'}`;
   } else {
     // Clear typing notification if no one is typing
@@ -135,6 +148,7 @@ socket.on("typing", function (typingUsers) {
   }
 });
 
+//Make the div disappear if no one is typing
 socket.on("stop typing", function () {
     typingNotification.innerHTML = "";
 });

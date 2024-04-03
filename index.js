@@ -17,6 +17,7 @@ const io = socket(server);
 
 //we use a set to store users, sets objects are for unique values of any type
 const activeUsers = new Set();
+//set of the typing users to send to client.js
 const typingUsers = new Set();
 
 io.on("connection", function (socket) {
@@ -38,6 +39,7 @@ io.on("connection", function (socket) {
       io.emit("chat message", data);
   });
 
+  //the console log was to see if I was getting the usernames
   socket.on("typing", function () {
     typingUsers.add(socket.userId);
     console.log("Typing users:", [...typingUsers]);
