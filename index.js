@@ -17,6 +17,7 @@ const io = socket(server);
 
 //we use a set to store users, sets objects are for unique values of any type
 const activeUsers = new Set();
+const typingUsers = new Set();
 
 io.on("connection", function (socket) {
   console.log("Made socket connection");
@@ -35,6 +36,18 @@ io.on("connection", function (socket) {
 
     socket.on("chat message", function (data) {
       io.emit("chat message", data);
+  });
+
+  socket.on("typing", function () {
+    typingUsers.add(socket.userId);
+    console.log("Typing users:", [...typingUsers]);
+    io.emit("typing", [...typingUsers]);
+  });
+
+  socket.on("stop typing", function () {
+    typingUsers.delete(socket.userId);
+    console.log("Typing users:", [...typingUsers]);
+    io.emit("stop typing");
   });
 
 });

@@ -3,6 +3,7 @@
 const socket = io();
 
 const inboxPeople = document.querySelector(".inbox__people");
+const typingNotification = document.querySelector(".typing_notification")
 
 
 let userName = "";
@@ -91,6 +92,7 @@ const addNewMessage = ({ user, message }) => {
   messageBox.innerHTML += user === userName ? myMsg : receivedMsg;
 };
 
+
 messageForm.addEventListener("submit", (e) => {
   e.preventDefault();
   if (!inputField.value) {
@@ -102,9 +104,38 @@ messageForm.addEventListener("submit", (e) => {
     nick: userName,
   });
 
+  //to stop it from showing after sending
+  socket.emit("stop typing")
+
   inputField.value = "";
 });
+
+inputField.addEventListener("input", () => {
+  if (inputField.value.trim() !== "") {
+      socket.emit("typing");
+  } else {
+      socket.emit("stop typing");
+  }
+});
+
 
 socket.on("chat message", function (data) {
   addNewMessage({ user: data.nick, message: data.message });
 });
+
+socket.on("typing", function (typingUsers) {
+  // Display typing notification
+  if (typingUsers.length > 0) {
+    const typingUsernames = typingUsers.join(", ");
+    
+    typingNotification.innerHTML = `${typingUsernames} ${typingUsers.length > 1 ? 'are typing...' : 'is typing...'}`;
+  } else {
+    // Clear typing notification if no one is typing
+    typingNotification.innerHTML = "";
+  }
+});
+
+socket.on("stop typing", function () {
+    typingNotification.innerHTML = "";
+});
+
