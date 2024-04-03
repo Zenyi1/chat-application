@@ -86,6 +86,18 @@ h2{
   height: 100%;
 }
 
+.btn-resume {
+    color: #ffffff; /* Text color */
+    border-color: #d35f12; /* Border color */
+    background-color: transparent; /* Transparent background */
+}
+
+.btn-resume:hover {
+    color: #ffffff; /* Text color on hover */
+    background-color: #d35f12; /* Background color on hover */
+    border-color: #d35f12; /* Border color on hover */
+}
+
 .card:hover .vidcontainer{
   display: block;
 }
