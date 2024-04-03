@@ -8,6 +8,27 @@
   height: 100%;
 }
 
+.white {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.whiteintro{
+  color: #ffffff;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.aboutpage {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url("../assets/leaves.jpg"); 
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 #about{
   padding-top: 5%;
 }
@@ -51,15 +72,24 @@ h2{
   font-weight: bold;
 }
 
-.card {
-    background-color: #fff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out;
+.card{
+  background: transparent;
+  border: none;
+  position: relative;
 }
 
-.card:hover {
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+.vidcontainer{
+  display:none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
+
+.card:hover .vidcontainer{
+  display: block;
+}
+
 
 /* Contact section styling */
 #contact {
@@ -69,12 +99,53 @@ h2{
     text-align: center;
     position: fixed;
     bottom:0;
-    height: 4vh;
+    height: 6vh;
     width: 100%;
+}
+
+h1 {
+  font-weight: 900;
 }
 
 @media (max-width: 768px) {
     body {
         background-size: cover;
     }
+}
+
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 2px;
+  height: 100%;
+  background-color: #11740a;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #11740a;
+}
+
+.timeline-item .timeline-content {
+  position: relative;
+  padding: 20px;
+  border-radius: 8px;
 }
