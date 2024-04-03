@@ -24,11 +24,7 @@ const newUserConnected = function (data) {
     //call
     addToUsersBox(userName);
 
-    joinLeave.innerHTML = `${userName} has joined`;
-    //I add this to make it dissapear after 3 seconds
-    setTimeout(() => {
-      joinLeave.innerHTML = "";
-    }, 3000);
+    displayJoinLeave(`${userName} has joined`);
 };
 
 const addToUsersBox = function (userName) {
@@ -59,17 +55,22 @@ socket.on("new user", function (data) {
   data.map(function (user) {
           return addToUsersBox(user);
       });
+  displayJoinLeave(`${userName} has joined`);
 });
 
 //when a user leaves
 socket.on("user disconnected", function (userName) {
   document.querySelector(`.${userName}-userlist`).remove();
-
-  joinLeave.innerHTML = `${userName} has left`;
-  setTimeout(() => {
-    joinLeave.innerHTML = "";
-  }, 3000);
+  displayJoinLeave(`${userName} has left`);
 });
+
+//display joining and leaving
+function displayJoinLeave(message) {
+    joinLeave.innerHTML = message;
+    setTimeout(() => {
+        joinLeave.innerHTML = "";
+    }, 3000); // Remove the notification after 3 seconds
+}
 
 
 const inputField = document.querySelector(".message_form__input");

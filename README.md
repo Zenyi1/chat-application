@@ -6,18 +6,18 @@ For this assignment, I successfully implemented the required features of adding 
 ## Implementation Process
 
 ### Typing Notification
-Adding typing notifications involved modifying the frontend by adding a div below the text input and backend components by having the server emit signals when a user is typing and stops. This was the hardest part by far of the whoel project. On the backend, I developed logic to broadcast this notification to other users in the same chat room this was by emitting the specific signal alongside a list of the users from index.js and then adding event listeners on client.js and modifying the div based on if the list of typing users was empty or not. A bug that took me a while to figure out was making the message disappear after hitting enter, but that was fixed by adding a a socket.emit inside the event listener for submit. 
+Adding typing notifications involved modifying the frontend by adding a div below the text input and backend components by having the server emit signals when a user is typing and stops I learned the most from this requirement. This was the hardest part by far of the whole project. On the backend, First I added a const that called the div that I created in the frontend that was gonna show hen someone is typing. I developed logic to broadcast this notification to other users in the same chat room this was by emitting the specific signal alongside a list of the users from index.js and then adding event listeners on client.js and modifying the div based on if the list of typing users was empty or not. A bug that took me a while to figure out was making the message disappear after hitting enter, but that was fixed by adding a a socket.emit inside the event listener for submit. 
 
 ### User Connection/Disconnection Notifications
-Implementing user connection/disconnection notifications also required changes to both frontend and backend components. I updated the frontend to send a notification to the server whenever a user connects or disconnects from the application. On the backend, I developed logic to broadcast these notifications to all users in the relevant chat rooms.
+This was way easier compared to the typing notification the starting code was incredibly generous and very functional so I just took advantage that there were already functions in place for when a user joins to add it to the userBox and there i modified a div I created in the frontend and set it on a timeout for 3 seconds so that the website doesnt get al cluterred. Then I did the same thing for when a user disconnects inside the socket already defined for it. 
 
 
 ## Outcome
-After overcoming the challenges and implementing the required features, our messaging application now provides a more interactive and engaging user experience. Users can see when others are typing and receive timely notifications about user activity within the chat rooms. These enhancements contribute to a richer communication experience and improve overall usability.
+After making all these changes the chat application was working perfectly 
 
 
 ##Current Bugs
-There's two major bugs, the first one is that if someone disconnects while typing they will always remain in the user is typing until you rerun the server, which shouldn't be an issue but its a corner case that I would fix given more time. 
+There's One major bug that you probably won't find when you check the assignment as it is very tricky to create. It shows when someone disconnects while typing they will always remain in the user is typing until you rerun the server, which should not be an issue but its a corner case that I would fix given more time. 
 
 
 ## Conclusion
